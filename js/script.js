@@ -21,8 +21,13 @@ const searchPhone = () => {
   }
 };
 
+const ToggleSpinner = (toggle) => {
+  document.getElementById('spinner').style.display = toggle;
+};
+
 const displaySearchResult = (phones) => {
-  console.log(phones);
+  // toggle spinner
+  ToggleSpinner('block');
   const searchResult = document.getElementById('search-result');
   searchResult.innerHTML = '';
 
@@ -71,6 +76,7 @@ const displaySearchResult = (phones) => {
       });
     }
   }
+  ToggleSpinner('none');
 };
 
 const loadPhoneDetail = (phoneId) => {
