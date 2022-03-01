@@ -19,7 +19,7 @@ const displaySearchResult = (phones) => {
     const div = document.createElement('div');
     div.classList.add('col');
     div.innerHTML = `
-        <div class="card h-100">
+        <div onclick="loadPhoneDetail('${phone.slug}')" class="card h-100">
           <img src="${phone.image}" class="card-img-top" alt="..." />
           <div class="card-body">
             <h5 class="card-title">${phone.phone_name}</h5>
@@ -29,4 +29,11 @@ const displaySearchResult = (phones) => {
     `;
     searchResult.appendChild(div);
   });
+};
+
+const loadPhoneDetail = (phoneId) => {
+  const url = `https://openapi.programming-hero.com/api/phone/${phoneId}`;
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => console.log(data.data));
 };
