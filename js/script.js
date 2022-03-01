@@ -1,18 +1,24 @@
+// searchPhone for fetching data
 const searchPhone = () => {
+  // input field
   const searchField = document.getElementById('search-field');
   const searchText = searchField.value;
-  // console.log(searchText);
 
   searchField.value = '';
+
   // clear details
   const phoneDetail = document.getElementById('phone-detail');
   phoneDetail.innerHTML = '';
+
+  // empty search result
   const empty = document.getElementById('empty-message');
   if (searchText == '') {
     empty.style.display = 'block';
     document.getElementById('no-result').style.display = 'none';
   } else {
     empty.style.display = 'none';
+
+    // dynamic fetch
     const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
 
     fetch(url)
@@ -21,6 +27,7 @@ const searchPhone = () => {
   }
 };
 
+// toggle spinner
 const ToggleSpinner = (toggle) => {
   document.getElementById('spinner').style.display = toggle;
 };
@@ -33,6 +40,7 @@ const displaySearchResult = (phones) => {
 
   if (phones.length === 0) {
     document.getElementById('no-result').style.display = 'block';
+    // result <20
   } else {
     if (phones.length > 20) {
       for (let i = 0; i < 20; i++) {
@@ -79,6 +87,7 @@ const displaySearchResult = (phones) => {
   ToggleSpinner('none');
 };
 
+// phone detail
 const loadPhoneDetail = (phoneId) => {
   const url = `https://openapi.programming-hero.com/api/phone/${phoneId}`;
   fetch(url)
@@ -86,7 +95,9 @@ const loadPhoneDetail = (phoneId) => {
     .then((data) => displayPhoneDetail(data.data));
 };
 
+// display phone detail
 const displayPhoneDetail = (phone) => {
+  console.log(phone);
   const phoneDetail = document.getElementById('phone-detail');
   phoneDetail.innerHTML = '';
   const div = document.createElement('div');
@@ -100,6 +111,10 @@ const displayPhoneDetail = (phone) => {
           <div class="card-body">
             <h5 class="card-title">${phone.name}</h5>
             <p class="card-text">
+            Released Date: ${
+              phone.releaseDate == '' ? 'N/A' : phone.releaseDate
+            }
+            </br>
             Display Size: ${phone.mainFeatures.displaySize}
             </br>
             Memory: ${phone.mainFeatures.memory}
@@ -108,9 +123,16 @@ const displayPhoneDetail = (phone) => {
             </br>
             Sensor: ${phone.mainFeatures.sensors}
             </br>
-            Released Date: ${
-              phone.releaseDate == '' ? 'N/A' : phone.releaseDate
-            }
+            Storage: ${phone.mainFeatures.storage}
+            </br>
+            other:
+            </br>
+            Bluetooth:${phone.others.Bluetooth},
+            GPS:${phone.others.GPS},
+            NFC:${phone.others.NFC},
+            Radio:${phone.others.Radio},
+            USB:${phone.others.USB},
+            WLAN:${phone.others.WLAN}
             </p>
 
           </div>

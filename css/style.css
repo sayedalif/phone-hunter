@@ -5,11 +5,13 @@
   color: red;
 }
 
+/* * empty message */
 #empty-message {
   display: none;
   color: red;
 }
 
+/* spinner */
 #spinner {
   display: none;
 }

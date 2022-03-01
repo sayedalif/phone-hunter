@@ -29,25 +29,31 @@
     <script src="js/script.js"></script>
   </head>
   <body>
-    <h1 class="text-center">Search Phones</h1>
+    <!-- header -->
+    <header>
+      <h1 class="text-center text-secondary">Search Phones</h1>
 
-    <div class="input-group mb-3 w-50 mx-auto">
-      <input
-        type="text"
-        class="form-control"
-        id="search-field"
-        placeholder="Phone Name"
-        aria-describedby="button-addon2"
-      />
-      <button
-        onclick="searchPhone()"
-        class="btn btn-outline-secondary"
-        type="button"
-        id="button-search"
-      >
-        search
-      </button>
-    </div>
+      <!-- input field -->
+      <div class="input-group mb-3 w-50 mx-auto">
+        <input
+          type="text"
+          class="form-control"
+          id="search-field"
+          placeholder="Phone Name"
+          aria-describedby="button-addon2"
+        />
+
+        <!-- button -->
+        <button
+          onclick="searchPhone()"
+          class="btn btn-outline-secondary"
+          type="button"
+          id="button-search"
+        >
+          search
+        </button>
+      </div>
+    </header>
 
     <!-- * spinner -->
     <div class="d-flex justify-content-center">
@@ -55,15 +61,19 @@
         <span class="visually-hidden">Loading...</span>
       </div>
     </div>
-    <!-- * empty message -->
-    <h2 id="empty-message" class="text-center">Please Enter Keyword</h2>
-    <!-- * no result -->
-    <h2 id="no-result" class="text-center">No Phone found</h2>
+
+    <!-- * message section -->
+    <section>
+      <!-- * empty message -->
+      <h2 id="empty-message" class="text-center">Please Enter Keyword</h2>
+      <!-- * no result -->
+      <h2 id="no-result" class="text-center">No Phone Found</h2>
+    </section>
 
     <!-- details section -->
     <div id="phone-detail" class="mb-3 mx-auto" style="max-width: 540px"></div>
 
-    <!--  -->
+    <!-- * phone result  -->
     <main class="container">
       <div id="search-result" class="row row-cols-1 row-cols-md-3 g-4"></div>
     </main>
