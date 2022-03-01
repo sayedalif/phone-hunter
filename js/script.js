@@ -4,9 +4,13 @@ const searchPhone = () => {
   // console.log(searchText);
 
   searchField.value = '';
+  // clear details
+  const phoneDetail = document.getElementById('phone-detail');
+  phoneDetail.innerHTML = '';
   const empty = document.getElementById('empty-message');
   if (searchText == '') {
     empty.style.display = 'block';
+    document.getElementById('no-result').style.display = 'none';
   } else {
     empty.style.display = 'none';
     const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
@@ -67,8 +71,7 @@ const displayPhoneDetail = (phone) => {
         <div class="col-md-8">
           <div class="card-body">
             <h5 class="card-title">${phone.name}</h5>
-            <p class="card-text">Main Features:
-            </br>
+            <p class="card-text">
             Display Size: ${phone.mainFeatures.displaySize}
             </br>
             Memory: ${phone.mainFeatures.memory}
