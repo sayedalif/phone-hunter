@@ -13,12 +13,18 @@ const searchPhone = () => {
 };
 
 const displaySearchResult = (phones) => {
+  console.log(phones);
   const searchResult = document.getElementById('search-result');
   searchResult.innerHTML = '';
-  phones.forEach((phone) => {
-    const div = document.createElement('div');
-    div.classList.add('col');
-    div.innerHTML = `
+
+  if (phones.length === 0) {
+    document.getElementById('no-result').style.display = 'block';
+  } else {
+    phones.forEach((phone) => {
+      document.getElementById('no-result').style.display = 'none';
+      const div = document.createElement('div');
+      div.classList.add('col');
+      div.innerHTML = `
         <div class="card h-100 border-0">
           <img src="${phone.image}" class="card-img-top w-50" alt="phone" />
           <div class="card-body">
@@ -30,8 +36,9 @@ const displaySearchResult = (phones) => {
           </div>
         </div>
     `;
-    searchResult.appendChild(div);
-  });
+      searchResult.appendChild(div);
+    });
+  }
 };
 
 const loadPhoneDetail = (phoneId) => {
