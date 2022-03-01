@@ -77,7 +77,9 @@ const displayPhoneDetail = (phone) => {
             </br>
             Sensor: ${phone.mainFeatures.sensors}
             </br>
-            Released Date: ${phone.releaseDate}
+            Released Date: ${
+              phone.releaseDate == '' ? 'N/A' : phone.releaseDate
+            }
             </p>
 
           </div>
