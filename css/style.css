@@ -4,3 +4,8 @@
   display: none;
   color: red;
 }
+
+#empty-message {
+  display: none;
+  color: red;
+}

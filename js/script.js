@@ -4,12 +4,17 @@ const searchPhone = () => {
   // console.log(searchText);
 
   searchField.value = '';
+  const empty = document.getElementById('empty-message');
+  if (searchText == '') {
+    empty.style.display = 'block';
+  } else {
+    empty.style.display = 'none';
+    const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
 
-  const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
-
-  fetch(url)
-    .then((res) => res.json())
-    .then((data) => displaySearchResult(data.data));
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => displaySearchResult(data.data));
+  }
 };
 
 const displaySearchResult = (phones) => {
@@ -51,6 +56,7 @@ const loadPhoneDetail = (phoneId) => {
 const displayPhoneDetail = (phone) => {
   console.log(phone);
   const phoneDetail = document.getElementById('phone-detail');
+  phoneDetail.innerHTML = '';
   const div = document.createElement('div');
   div.classList.add('card');
   div.innerHTML = `
@@ -71,7 +77,7 @@ const displayPhoneDetail = (phone) => {
             </br>
             Sensor: ${phone.mainFeatures.sensors}
             </br>
-            Released Date: ${phone.mainFeatures.released}
+            Released Date: ${phone.releaseDate}
             </p>
 
           </div>
